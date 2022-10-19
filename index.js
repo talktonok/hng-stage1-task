@@ -11,6 +11,7 @@ const database = mongoose.connection;
 database.on('error', (error) => {
     console.log(error)
 })
+//"main": "index.js",
 
 database.once('connected', () => {
     console.log('Database Connected');

@@ -2,7 +2,7 @@
   "name": "tech-company",
   "version": "1.0.0",
   "description": "Laptop 4 Developers Individual project",
-  "main": "index.js",
+  "main": "web.js",
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
