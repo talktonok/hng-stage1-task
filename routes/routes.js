@@ -21,3 +21,4 @@ router.delete('/company/:id', companyController.deleteCompany)
 
 
 module.exports = router;
+//DATABASE_URL = mongodb+srv://nok:jiezcOtWFB6SSMUo@cluster0.1i4gfco.mongodb.net/?retryWrites=true&w=majority
