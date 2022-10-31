@@ -40,7 +40,7 @@ const getAll = async (req, res) => {
         slackUsername:slackUsername
       }));
 
-        res.json(result)
+        res.json({data:user})
     }
     catch(error){
         res.status(500).json({message: error.message})
