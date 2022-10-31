@@ -1,23 +1,20 @@
 const { Model } = require('mongoose');
-const companyModel = require('../models/companyModel')
+const UserModel = require('../models/UserModel')
 
 const store =   async (req, res) => {
-    const company = new companyModel({
-      name : req.body.name,
-      head_office: req.body.head_office,
-      phone: req.body.phone,
-      email: req.body.email,
-      employees: req.body.employees,
-      category: req.body.category,
-      description: req.body.description
+    const user = new UserModel({
+        slackUsername : req.body.slackUsername,
+        backend: req.body.backend,
+        age: req.body.age,
+        bio: req.body.bio
 
     
   })
 
 
   try {
-    const companyToSave = await company.save();
-    res.status(200).json(companyToSave)
+    const userToSave = await user.save();
+    res.status(200).json(userToSave)
 }
 catch (error) {
     res.status(400).json({message: error.message})
@@ -26,8 +23,8 @@ catch (error) {
 
 const getAll = async (req, res) => {
     try{
-        const company = await companyModel.find();
-        res.json(company)
+        const user = await UserModel.find();
+        res.json(user)
     }
     catch(error){
         res.status(500).json({message: error.message})
@@ -36,8 +33,8 @@ const getAll = async (req, res) => {
 
 const getById =async (req, res) => {
     try{
-        const company = await companyModel.findById(req.params.id);
-        res.json(company)
+        const user = await UserModel.findById(req.params.id);
+        res.json(user)
     }
     catch(error){
         res.status(500).json({message: error.message})
@@ -50,22 +47,22 @@ const update = async (req, res) => {
         const updatedData = req.body;
         const options = { new: true };
 
-        const updatedCompany = await companyModel.findByIdAndUpdate(
+        const updateduser = await UserModel.findByIdAndUpdate(
             id, updatedData, options
         )
 
-        res.send(updatedCompany)
+        res.send(updateduser)
     }
     catch (error) {
         res.status(400).json({ message: error.message })
     }
 }
 
-const deleteCompany = async (req, res) => {
+const deleteUser = async (req, res) => {
     try {
         const id = req.params.id;
-        const company = await companyModel.findByIdAndDelete(id)
-        res.send(`Document with ${company.name} has been deleted..`)
+        const user = await UserModel.findByIdAndDelete(id)
+        res.send(`Document with ${user.slackUsername} has been deleted..`)
     }
     catch (error) {
         res.status(400).json({ message: error.message })
@@ -78,5 +75,5 @@ module.exports =
     getAll,
     getById,
     update,
-    deleteCompany
+    deleteUser
 }

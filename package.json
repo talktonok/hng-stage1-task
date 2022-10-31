@@ -1,7 +1,7 @@
 {
-  "name": "tech-company",
+  "name": "Stage-1-task",
   "version": "1.0.0",
-  "description": "Laptop 4 Developers Individual project",
+  "description": "",
   "main": "web.js",
   "scripts": {
     "start": "nodemon index.js",

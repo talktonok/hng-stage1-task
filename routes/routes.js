@@ -1,23 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-const companyController = require('../controller/company')
+const userController = require('../controller/user')
 
-router.post('/company', companyController.store)
+router.post('/user', userController.store)
 
 
-router.get('/company', companyController.getAll);
+router.get('/user', userController.getAll);
 
 
 //Get by ID Method
-router.get('/company/:id', companyController.getById);
+router.get('/user/:id', userController.getById);
 
 //Update by ID Method
-router.patch('/company/:id', companyController.update);
+router.patch('/user/:id', userController.update);
 
 
 //Delete by ID Method
-router.delete('/company/:id', companyController.deleteCompany)
+router.delete('/user/:id', userController.deleteUser)
 
 
 module.exports = router;
