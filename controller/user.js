@@ -14,7 +14,14 @@ const store =   async (req, res) => {
 
   try {
     const userToSave = await user.save();
-    res.status(200).json(userToSave)
+    const result = {
+        bio: userToSave.bio,
+        age: userToSave.age,
+        backend:userToSave.backend,
+        slackUsername:userToSave.slackUsername
+        
+      };
+    res.status(200).json(result)
 }
 catch (error) {
     res.status(400).json({message: error.message})
@@ -24,7 +31,16 @@ catch (error) {
 const getAll = async (req, res) => {
     try{
         const user = await UserModel.find();
-        res.json(user)
+
+        const result = user
+      .map(({ slackUsername, backend, age, bio}) => ({
+        bio: bio,
+        age: age,
+        backend:backend,
+        slackUsername:slackUsername
+      }));
+
+        res.json(result)
     }
     catch(error){
         res.status(500).json({message: error.message})
@@ -34,7 +50,13 @@ const getAll = async (req, res) => {
 const getById =async (req, res) => {
     try{
         const user = await UserModel.findById(req.params.id);
-        res.json(user)
+        const result = {
+            bio: user.bio,
+            age: user.age,
+            backend:user.backend,
+            slackUsername:user.slackUsername
+      };
+        res.json(result)
     }
     catch(error){
         res.status(500).json({message: error.message})
@@ -50,8 +72,15 @@ const update = async (req, res) => {
         const updateduser = await UserModel.findByIdAndUpdate(
             id, updatedData, options
         )
+        const result = updateduser
+      .map(({ slackUsername, backend, age, bio}) => ({
+        bio: bio,
+        age: age,
+        backend:backend,
+        slackUsername:slackUsername
+      }));
 
-        res.send(updateduser)
+        res.send(result)
     }
     catch (error) {
         res.status(400).json({ message: error.message })
